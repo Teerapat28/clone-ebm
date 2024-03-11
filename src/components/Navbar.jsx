@@ -16,8 +16,6 @@ const Navbar = () => {
   const [title, setTitle] = useState("");
   const [supmenu, setSubmenu] = useState([]);
 
-  const [hovering, setHovering] = useState("");
-
   return (
     <Warpper>
       <nav className="nav-top">
@@ -64,10 +62,9 @@ const Navbar = () => {
                       setOpen(true);
                       setTitle(item.title);
                       setSubmenu(item.childrens);
-                      setHovering(index);
                     }}
                     onMouseLeave={() => {
-                      setOpen(false);
+                      // setOpen(false);
                       // setTitle("");
                       // setSubmenu([]);
                     }}
@@ -75,13 +72,17 @@ const Navbar = () => {
                     <span>{item.title}</span>
                     <img id="icon" src={arrowDown} />
                   </li>
-                      
-                    <NavUnder 
-                      name={title}
-                      item={supmenu}
-                      open={open}
-                      hovering={hovering}
-                      />
+
+                  {open && (
+                    <div
+                      className=""
+                      onMouseLeave={() => {
+                        setOpen(false);
+                      }}
+                    >
+                      <NavUnder name={title} item={supmenu} />
+                    </div>
+                  )}
                 </>
               );
             } else
@@ -102,49 +103,47 @@ const Navbar = () => {
   );
 };
 
-const NavUnder = ({ name, item, open, hovering }) => {
+const NavUnder = ({ name, item }) => {
   console.log(name);
   console.log(item);
-  console.log(open);
-  console.log(hovering);
 
   return (
-    <div
-      className="navmenu-detail-wrap"
-    >
       <div
-        className="arrowi active left-72 top-20"
-      ></div>
+        className="navmenu-detail-wrap"
+        // style={{ transform: open ? "scaleX(1)" : "scaleX(0)" }}
+      >
+        <div className="arrowi active left-72 top-20"></div>
 
-      <ul className="navmenu-item-detail">
-        <li className="head">{name}</li>
-        {item.map((supmenu, index) => {
-          if (supmenu.childrens) {
-            <li key={index} className="link more-sub">
-              <Link to={supmenu.path}>{supmenu.title}</Link>
-              <div className="icons">
-                <img
-                  src={ylCDR}
-                  onMouseOver={(e) => (e.currentTarget.src = wiCDR)}
-                  onMouseOut={(e) => (e.currentTarget.src = ylCDR)}
-                />
-              </div>
-            </li>;
-          }
-          return (
-            <li key={index} className="link">
-              <Link to={supmenu.path}>{supmenu.title}</Link>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+        <ul className="navmenu-item-detail">
+          <li className="head">{name}</li>
+          {item.map((supmenu, index) => {
+            if (supmenu.childrens) {
+              <li key={index} className="link more-sub">
+                <Link to={supmenu.path}>{supmenu.title}</Link>
+                <div className="icons">
+                  <img
+                    src={ylCDR}
+                    onMouseOver={(e) => (e.currentTarget.src = wiCDR)}
+                    onMouseOut={(e) => (e.currentTarget.src = ylCDR)}
+                  />
+                </div>
+              </li>;
+            }
+            return (
+              <li key={index} className="link">
+                <Link to={supmenu.path}>{supmenu.title}</Link>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
   );
 };
 
 export default Navbar;
 
-{/* <div
+{
+  /* <div
       style={{ transform: open ? "scaleX(1)" : "scaleX(0)" }}
       className="navmenu-detail-wrap"
       
@@ -175,7 +174,8 @@ export default Navbar;
           );
         })}
       </ul>
-    </div> */}
+    </div> */
+}
 
 {
   /* <div
