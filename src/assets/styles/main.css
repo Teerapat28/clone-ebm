@@ -1,0 +1,26 @@
+:root
+{
+    --color-blue:#20498E ;
+    --color-green:#76B72A; 
+    --color-red: #C71517;
+    --color-yellow: #FAD53D;
+    --color-dark-text: #2E383C;
+
+    --map-background-color : white;
+    --map-station-basic-width: 10px;
+    --map-station-point-width: 19px;
+    --map-line-color-yl:#FAD53D;
+    --map-line-color-pk:#D76886;
+    --map-line-color-gr:#7AB420;
+    --map-line-color-gw:#00807D;
+    --map-line-color-gold:#a88b34;
+    --map-line-color-white:#ffffff;
+    --map-line-stroke-width: 9px
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Sarabun', sans-serif !important;
+    font-weight: 400;
+}
